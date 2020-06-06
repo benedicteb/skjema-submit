@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+
+  backend:
+    build: skjema-submit-back/
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - CORS_ALLOWED_ORIGIN=http://localhost
+    restart: always
