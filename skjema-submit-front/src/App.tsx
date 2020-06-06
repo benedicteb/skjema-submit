@@ -143,6 +143,18 @@ function App() {
           <p className={"form--submit-error"}>{submitError}</p>
         </fieldset>
       </form>
+
+      <footer>
+        <p>
+          <a
+            href={"https://github.com/benedicteb/skjema-submit"}
+            target={"_blank"}
+            rel={"noopener noreferrer"}
+          >
+            Code
+          </a>
+        </p>
+      </footer>
     </div>
   );
 }

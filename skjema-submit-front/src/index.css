@@ -18,6 +18,16 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
+a {
+  color: white;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
 .app {
   width: 50%;
   margin: 0 auto;
