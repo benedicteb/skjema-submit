@@ -142,7 +142,6 @@ function App() {
 
           <p className={"form--submit-error"}>{submitError}</p>
         </fieldset>
-        @
       </form>
     </div>
   );

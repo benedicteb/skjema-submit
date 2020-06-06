@@ -10,3 +10,13 @@ services:
       - PORT=3000
       - CORS_ALLOWED_ORIGIN=http://localhost
     restart: always
+
+  frontend:
+    build:
+      context: skjema-submit-front/
+    ports:
+      - "80:80"
+    restart: always
+    depends_on:
+      backend:
+        condition: service_healthy

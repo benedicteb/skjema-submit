@@ -1,0 +1,29 @@
+FROM node:13-alpine as build-dependencies
+
+WORKDIR /usr/src/app
+
+COPY package.json package-lock.json ./
+
+RUN npm install
+
+COPY tsconfig.json ./
+COPY src/ ./src
+COPY public/ ./public
+
+RUN npm run build
+
+# Stage 2 - run
+FROM nginx:1.17-alpine
+
+COPY --from=build-dependencies /usr/src/app/build /usr/share/nginx/html
+
+RUN apk update && apk add curl
+
+MAINTAINER Benedicte Emilie Brækken <b@brkn.io>
+
+HEALTHCHECK --interval=5s --timeout=3s \
+    CMD curl -f http://localhost:80/ || exit 1
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
