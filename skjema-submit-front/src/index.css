@@ -86,3 +86,8 @@ body {
 
   margin: 0 0 20px 0;
 }
+
+.form--submit-error {
+  color: red;
+  font-weight: bold;
+}
