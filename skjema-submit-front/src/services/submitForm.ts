@@ -17,7 +17,7 @@ const submitForm = (
       throw Error(response.statusText);
     }
 
-    return response.json();
+    return response;
   });
 };
 
