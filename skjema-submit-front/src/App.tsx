@@ -3,6 +3,7 @@ import submitForm from "./services/submitForm";
 import validateEmail from "./validators/validateEmail";
 import validateName from "./validators/validateName";
 import validatePhone from "./validators/validatePhone";
+import validatePostalCode from "./validators/validatePostalCode";
 
 function App() {
   const [name, setName] = useState("");
@@ -15,6 +16,7 @@ function App() {
   const [phoneError, setPhoneError] = useState("");
 
   const [postalCode, setPostalCode] = useState("");
+  const [postalCodeError, setPostalCodeError] = useState("");
 
   const [comment, setComment] = useState("");
 
@@ -31,6 +33,10 @@ function App() {
   useEffect(() => {
     setPhoneError(validatePhone(phone));
   }, [phone]);
+
+  useEffect(() => {
+    setPostalCodeError(validatePostalCode(postalCode));
+  }, [postalCode]);
 
   return (
     <div className={"app"}>
@@ -107,7 +113,11 @@ function App() {
           </div>
 
           <div className={"form--input-group"}>
-            <label>Postnummer</label>
+            <div className={"form--input-label"}>
+              <label>Postnummer</label>
+              <p className={"form--error-message"}>{postalCodeError}</p>
+            </div>
+
             <input
               type={"number"}
               name={"areacode"}
@@ -134,7 +144,10 @@ function App() {
           <button
             type={"submit"}
             disabled={
-              nameError !== "" || phoneError !== "" || emailError !== ""
+              nameError !== "" ||
+              phoneError !== "" ||
+              emailError !== "" ||
+              postalCodeError !== ""
             }
           >
             Send inn!
