@@ -1,4 +1,4 @@
-import { parsePostalCodeRegisterFile } from "../parsePostalCodeRegisterFile";
+import { parsePostalCodeRegisterFile } from "./parsePostalCodeRegisterFile";
 
 const validatePostalCode = (postalCode: string): boolean => {
   const validPostalCodes = parsePostalCodeRegisterFile();

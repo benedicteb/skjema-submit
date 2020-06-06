@@ -4,7 +4,7 @@ import cors from "cors";
 import { CORS_ALLOWED_ORIGIN } from "./config";
 import { handleFormSubmit } from "./routes/handleFormSubmit";
 import { body } from "express-validator";
-import { validatePostalCode } from "./controllers/validators";
+import { validatePostalCode } from "./validators";
 const { check, validationResult } = require("express-validator");
 
 const app = express();
