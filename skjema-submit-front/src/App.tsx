@@ -1,24 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={"app"}>
+      <h1>Skjema!</h1>
+
+      <p>Send inn skjemaet for å melde deg på arrangementet</p>
+
+      <form
+        action={"http://localhost:3000/submit-form"}
+        method={"post"}
+        className={"form"}
+      >
+        <fieldset className={"form--fieldset"}>
+          <legend>Informasjon</legend>
+
+          <div className={"form--input-group"}>
+            <label>Navn</label>
+            <input type={"text"} name={"name"} placeholder={"Anne Nordmann"} />
+          </div>
+
+          <div className={"form--input-group"}>
+            <label>E-post</label>
+            <input
+              type={"email"}
+              name={"email"}
+              placeholder={"navn@domene.no"}
+            />
+          </div>
+
+          <div className={"form--input-group"}>
+            <label>Telefon</label>
+            <input type={"tel"} name={"phone"} placeholder={"XXX XX XXX"} />
+          </div>
+
+          <div className={"form--input-group"}>
+            <label>Postnummer</label>
+            <input
+              type={"number"}
+              name={"areacode"}
+              max={"9999"}
+              placeholder={"1234"}
+            />
+          </div>
+
+          <div className={"form--input-group"}>
+            <label>Kommentar</label>
+            <textarea name={"comment"} />
+          </div>
+
+          <button type={"submit"}>Send inn!</button>
+        </fieldset>
+      </form>
     </div>
   );
 }
