@@ -1,6 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+const validateName = (name: string): string => {
+  if (name.length <= 2) {
+    return "Navnet er for kort";
+  }
+
+  return "";
+};
 
 function App() {
+  const [name, setName] = useState("");
+  const [nameError, setNameError] = useState("");
+
+  useEffect(() => {
+    setNameError(validateName(name));
+  }, [name]);
+
   return (
     <div className={"app"}>
       <h1>Skjema!</h1>
@@ -11,13 +26,30 @@ function App() {
         action={"http://localhost:3000/submit-form"}
         method={"post"}
         className={"form"}
+        onSubmit={(event) => {
+          event.preventDefault();
+
+          // TODO Post the request
+        }}
       >
         <fieldset className={"form--fieldset"}>
           <legend>Informasjon</legend>
 
           <div className={"form--input-group"}>
-            <label>Navn</label>
-            <input type={"text"} name={"name"} placeholder={"Anne Nordmann"} />
+            <div className={"form--input-label"}>
+              <label>Navn</label>
+              <p className={"form--error-message"}>{nameError}</p>
+            </div>
+
+            <input
+              type={"text"}
+              name={"name"}
+              placeholder={"Anne Nordmann"}
+              value={name}
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            />
           </div>
 
           <div className={"form--input-group"}>
@@ -49,7 +81,9 @@ function App() {
             <textarea name={"comment"} />
           </div>
 
-          <button type={"submit"}>Send inn!</button>
+          <button type={"submit"} disabled={nameError !== ""}>
+            Send inn!
+          </button>
         </fieldset>
       </form>
     </div>

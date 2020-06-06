@@ -3,6 +3,12 @@
 * {
   margin: 0;
   padding: 0;
+
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
 }
 
 body {
@@ -14,11 +20,19 @@ body {
 
 .app {
   width: 50%;
-  margin: auto;
+  margin: 0 auto;
   padding: 20px 0;
 }
 
-p {
+@media (max-width: 900px) {
+  .app {
+    margin: 0;
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+.app > p {
   margin: 10px 0;
 }
 
@@ -45,6 +59,18 @@ p {
   border-radius: 20px;
   padding: 5px 10px;
   border-style: none;
+}
+
+.form--input-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form--error-message {
+  color: red;
+  font-weight: bold;
 }
 
 .form--fieldset {
