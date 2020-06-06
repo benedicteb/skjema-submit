@@ -1,5 +1,6 @@
 import express from "express";
 import { validationResult } from "express-validator";
+import { sendEmail } from "../sendEmail";
 
 const handleFormSubmit = (req: express.Request, res: express.Response) => {
   const errors = validationResult(req);
@@ -10,11 +11,19 @@ const handleFormSubmit = (req: express.Request, res: express.Response) => {
 
   const { name, email, phone, comment, postalCode } = req.body;
 
-  console.log(name);
-  console.log(email);
-  console.log(phone);
-  console.log(comment);
-  console.log(postalCode);
+  const notificationEmail = `Hello,
+  
+the form has been submitted!
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Postal code: ${postalCode}
+
+Comment: ${comment}
+`;
+
+  sendEmail(notificationEmail);
 
   res.end();
 };
